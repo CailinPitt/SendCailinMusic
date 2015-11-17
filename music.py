@@ -33,12 +33,16 @@ container.load()
 
 print container.is_loaded
 
+artist = raw_input('Enter an artist: ')
+
+search = session.search(artist).load()
+# Search for artist
 
 print container[0].load().name
-track = session.get_track('spotify:track:2Foc5Q5nqNiosCNqttzHof')
+track = search.tracks[0]
 print track.load().name
 
 container[0].add_tracks(track)
 container.load()
- # Adds Get Lucky to first playlist, called SendCailinMusic
+ # Adds first song that is returned from search to first playlist, called SendCailinMusic
 loop.stop()
