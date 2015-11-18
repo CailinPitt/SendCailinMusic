@@ -35,14 +35,19 @@ print container.is_loaded
 
 artist = raw_input('Enter an artist: ')
 
-search = session.search(artist).load()
+search = session.search(artist)
+search.loaded_event.wait()
 # Search for artist
 
 print container[0].load().name
-track = search.tracks[0]
-print track.load().name
+track1 = search.tracks[0]
+track2 = search.tracks[1]
+print track1.load().name
+print track2.load().name
 
-container[0].add_tracks(track)
-container.load()
+container[0].add_tracks(track1)
+# container[0].add_tracks(track2)
+container[0].load()
  # Adds first song that is returned from search to first playlist, called SendCailinMusic
+session.logout()
 loop.stop()
